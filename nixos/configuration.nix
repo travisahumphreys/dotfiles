@@ -139,7 +139,7 @@ environment.variables = {
     go
     nodejs_22
     pavucontrol
-
+    geekbench
   ];
 services.udisks2.enable = true;
   # Some programs need SUID wrappers, can be configured further or are
