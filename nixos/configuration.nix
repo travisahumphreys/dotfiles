@@ -24,10 +24,7 @@ hardware.graphics = {
   networking.hostName = "thinkpad"; # Define your hostname.
   networking.networkmanager.enable = true;
 
-  #DONT FORGET YOU DELETED THIS DUMMY
-
   nix.extraOptions = ''experimental-features = nix-command flakes'';
-
 
    services.displayManager.ly.enable = true;
    services.displayManager.ly.settings = { animation = "doom";};
