@@ -16,7 +16,11 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-hardware.graphics = { 
+  boot.kernelPackages = pkgs.linuxPackages_zen;
+
+
+
+  hardware.graphics = { 
     enable = true;
   };
 
@@ -38,7 +42,8 @@ hardware.graphics = {
     variant = "";
   };
 
-
+  hardware.bluetooth.enable = true;
+  hardware.bluetooth.powerOnBoot = true; # powers up the default Bluetooth controller on boot
 hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
@@ -88,9 +93,15 @@ hardware.pulseaudio.enable = false;
   programs.yazi = {
     enable = true;
   };
-
+programs.gamescope = {
+    enable = true;
+    capSysNice = true;
+  };
   programs.steam = {
     enable = true;
+    gamescopeSession.enable = true;
+    extraCompatPackages = with pkgs;
+      [proton-ge-bin];
   };
   
   programs.waybar.enable = true;
