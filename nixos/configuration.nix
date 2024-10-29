@@ -18,11 +18,18 @@
 
   boot.kernelPackages = pkgs.linuxPackages_zen;
 
-
-
-  hardware.graphics = { 
-    enable = true;
+  hardware.amdgpu = {
+    initrd.enable = true;
+    opencl.enable = true;
+    amdvlk = {
+      enable = true;
+      support32Bit.enable = true;
+    };
   };
+
+  # hardware.graphics = { 
+  #   enable = true;
+  # };
 
 # Enable networking
   networking.hostName = "thinkpad"; # Define your hostname.
@@ -93,10 +100,10 @@ hardware.pulseaudio.enable = false;
   programs.yazi = {
     enable = true;
   };
-programs.gamescope = {
-    enable = true;
-    capSysNice = true;
-  };
+# programs.gamescope = {
+#     enable = true;
+#     capSysNice = true;
+#   };
   programs.steam = {
     enable = true;
     gamescopeSession.enable = true;
