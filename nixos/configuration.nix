@@ -1,16 +1,17 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-
-{ config, pkgs, ... }:
-
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      ./modules/localization.nix
-      ./modules/retroarch.nix
-    ];
+  config,
+  pkgs,
+  ...
+}: {
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+    ./modules/localization.nix
+    ./modules/retroarch.nix
+  ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -27,18 +28,18 @@
     };
   };
 
-  # hardware.graphics = { 
+  # hardware.graphics = {
   #   enable = true;
   # };
 
-# Enable networking
+  # Enable networking
   networking.hostName = "thinkpad"; # Define your hostname.
   networking.networkmanager.enable = true;
 
   nix.extraOptions = ''experimental-features = nix-command flakes'';
 
-   services.displayManager.ly.enable = true;
-   services.displayManager.ly.settings = { animation = "doom";};
+  services.displayManager.ly.enable = true;
+  services.displayManager.ly.settings = {animation = "doom";};
   # services.greetd = {
   #  enable = true;
   #  };
@@ -51,7 +52,7 @@
 
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = true; # powers up the default Bluetooth controller on boot
-hardware.pulseaudio.enable = false;
+  hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -70,16 +71,15 @@ hardware.pulseaudio.enable = false;
     };
   };
 
-
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.travis = {
     isNormalUser = true;
     description = "travis";
-    extraGroups = [ "networkmanager" "wheel" "input"];
+    extraGroups = ["networkmanager" "wheel" "input"];
     packages = with pkgs; [];
   };
 
-  fonts.packages = with pkgs; [ nerdfonts ];
+  fonts.packages = with pkgs; [nerdfonts];
 
   # xdg.portal.enable = true;
   xdg.portal.wlr.enable = true;
@@ -92,7 +92,7 @@ hardware.pulseaudio.enable = false;
   programs.git = {
     enable = true;
   };
-  
+
   programs.firefox = {
     enable = true;
   };
@@ -100,52 +100,51 @@ hardware.pulseaudio.enable = false;
   programs.yazi = {
     enable = true;
   };
-# programs.gamescope = {
-#     enable = true;
-#     capSysNice = true;
-#   };
+  # programs.gamescope = {
+  #     enable = true;
+  #     capSysNice = true;
+  #   };
   programs.steam = {
     enable = true;
     gamescopeSession.enable = true;
-    extraCompatPackages = with pkgs;
-      [proton-ge-bin];
+    extraCompatPackages = with pkgs; [proton-ge-bin];
   };
-  
+
   programs.waybar.enable = true;
-  
+
   programs.dconf.enable = true;
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-environment.variables = {
-  EDITOR = "nvim";
-  VISUAL = "nvim";
-};
+  environment.variables = {
+    EDITOR = "nvim";
+    VISUAL = "nvim";
+  };
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    neovim 		# editor
-    zellij 		# terminal multiplexer
-    kitty		# terminal emulator
-    lynx		# tui web browser
-    clipse 		# clipboard service
-    btop		# like htop
-    fastfetch		# look, me shiny
-    dunst   		# notification daemon
-    rofi-wayland 	# menu
-    inkscape  		# vector graphics 
-    obsidian  		# note-taking with markdown
-    zig 		# compiler
+    neovim # editor
+    zellij # terminal multiplexer
+    kitty # terminal emulator
+    lynx # tui web browser
+    clipse # clipboard service
+    btop # like htop
+    fastfetch # look, me shiny
+    dunst # notification daemon
+    rofi-wayland # menu
+    inkscape # vector graphics
+    obsidian # note-taking with markdown
+    zig # compiler
     glibc
-    ags 		# widget system / black magic
-    gnumake 		# compiler
-    hyprpaper 		# wallpaper daemon
+    ags # widget system / black magic
+    gnumake # compiler
+    hyprpaper # wallpaper daemon
     hyprshot
     hyprcursor
 
-    nwg-look  # GTK configurizor
-    wl-clipboard 	# clipboard hook
+    nwg-look # GTK configurizor
+    wl-clipboard # clipboard hook
     udiskie
     catppuccin-cursors.mochaDark
 
@@ -156,14 +155,14 @@ environment.variables = {
     pavucontrol
     geekbench
   ];
-services.udisks2.enable = true;
+  services.udisks2.enable = true;
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
-   programs.gnupg.agent = {
-     enable = true;
-     enableSSHSupport = true;
-   };
+  programs.gnupg.agent = {
+    enable = true;
+    enableSSHSupport = true;
+  };
 
   # List services that you want to enable:
 
@@ -183,5 +182,4 @@ services.udisks2.enable = true;
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "24.05"; # Did you read the comment?
-
 }

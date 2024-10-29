@@ -1,6 +1,9 @@
-{ config, pkgs, ...}:
 {
-# Set your time zone.
+  config,
+  pkgs,
+  ...
+}: {
+  # Set your time zone.
   time.timeZone = "America/Chicago";
 
   # Select internationalisation properties.
