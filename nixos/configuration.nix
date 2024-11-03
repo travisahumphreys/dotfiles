@@ -139,11 +139,11 @@
     glibc
     ags # widget system / black magic
     gnumake # compiler
+    brightnessctl
     hyprpaper # wallpaper daemon
     hyprshot
     hyprcursor
 
-    nwg-look # GTK configurizor
     wl-clipboard # clipboard hook
     udiskie
     catppuccin-cursors.mochaDark
