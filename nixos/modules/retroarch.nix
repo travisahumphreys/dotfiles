@@ -9,6 +9,7 @@
         swanstation
         snes9x
         pcsx2
+        play
         dolphin
       ];
     })

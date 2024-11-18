@@ -79,8 +79,15 @@
     packages = with pkgs; [];
   };
 
-  fonts.packages = with pkgs; [nerdfonts];
-
+  fonts = {
+    packages = with pkgs; [nerdfonts];
+    fontconfig = {
+      enable = true;
+      defaultFonts = {
+          monospace = ["CaskaydiaMono"];
+      };
+    };
+  };
   # xdg.portal.enable = true;
   xdg.portal.wlr.enable = true;
 
@@ -147,7 +154,7 @@
     wl-clipboard # clipboard hook
     udiskie
     catppuccin-cursors.mochaDark
-
+    lazygit
     fzf
     clang
     go
