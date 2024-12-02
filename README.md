@@ -1,3 +1,3 @@
-dotfiles repository
-this is the readme
+## dotfiles repository
 
+dotfiles for nixos on my thinkpad p16s
