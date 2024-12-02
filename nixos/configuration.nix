@@ -84,7 +84,7 @@
     fontconfig = {
       enable = true;
       defaultFonts = {
-          monospace = ["CaskaydiaMono"];
+        monospace = ["CaskaydiaMono"];
       };
     };
   };
@@ -150,7 +150,9 @@
     hyprpaper # wallpaper daemon
     hyprshot
     hyprcursor
-
+    alejandra
+    deadnix
+    nixd
     wl-clipboard # clipboard hook
     udiskie
     catppuccin-cursors.mochaDark
@@ -161,6 +163,9 @@
     nodejs_22
     pavucontrol
     geekbench
+    grim
+    slurp
+    zbar
   ];
   services.udisks2.enable = true;
   # Some programs need SUID wrappers, can be configured further or are
