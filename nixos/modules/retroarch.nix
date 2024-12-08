@@ -1,17 +1,14 @@
-{
-  config,
-  pkgs,
-  ...
-}: {
-  environment.systemPackages = with pkgs; [
-    (retroarch.override {
-      cores = with libretro; [
-        swanstation
-        snes9x
-        pcsx2
-        play
-        dolphin
-      ];
-    })
+{pkgs, ...}: let
+  retroarchWithCores = pkgs.retroarch.withCores (cores:
+    with cores; [
+      swanstation
+      snes9x
+      pcsx2
+      play
+      dolphin
+    ]);
+in {
+  environment.systemPackages = [
+    retroarchWithCores
   ];
 }

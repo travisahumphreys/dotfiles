@@ -80,16 +80,19 @@
   };
 
   fonts = {
-    packages = with pkgs; [nerdfonts];
+    packages = with pkgs; [nerd-fonts.caskaydia-cove];
     fontconfig = {
       enable = true;
       defaultFonts = {
-        monospace = ["CaskaydiaMono"];
+        serif = ["CaskaydiaCove"];
+        monospace = ["CaskaydiaCove"];
       };
     };
   };
-  # xdg.portal.enable = true;
-  xdg.portal.wlr.enable = true;
+  xdg.portal = {
+    enable = true;
+    extraPortals = [pkgs.xdg-desktop-portal-hyprland];
+  };
 
   programs.hyprland = {
     xwayland.enable = true;
@@ -150,6 +153,7 @@
     hyprpaper # wallpaper daemon
     hyprshot
     hyprcursor
+    hyprpolkitagent
     alejandra
     deadnix
     nixd
