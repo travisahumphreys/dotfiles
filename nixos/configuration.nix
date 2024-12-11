@@ -4,6 +4,7 @@
 {
   config,
   pkgs,
+  inputs,
   ...
 }: {
   imports = [
@@ -84,7 +85,7 @@
   };
 
   fonts = {
-    packages = with pkgs; [nerd-fonts.caskaydia-cove];
+    packages = with pkgs; [nerd-fonts.caskaydia-cove font-awesome];
     fontconfig = {
       enable = true;
       defaultFonts = {
@@ -93,12 +94,13 @@
       };
     };
   };
-  xdg.portal = {
-    enable = true;
-    extraPortals = [pkgs.xdg-desktop-portal-hyprland];
-  };
+  # xdg.portal = {
+  #   enable = true;
+  #   extraPortals = [pkgs.xdg-desktop-portal-hyprland];
+  # };
 
   programs.hyprland = {
+    package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
     xwayland.enable = true;
     enable = true;
   };
