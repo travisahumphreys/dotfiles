@@ -126,7 +126,7 @@
     extraCompatPackages = with pkgs; [proton-ge-bin];
   };
 
-  programs.waybar.enable = true;
+  # programs.waybar.enable = true;
 
   programs.dconf.enable = true;
   # Allow unfree packages
