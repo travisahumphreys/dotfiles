@@ -57,7 +57,6 @@
 
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = true; # powers up the default Bluetooth controller on boot
-  hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -176,6 +175,10 @@
     grim
     slurp
     zbar
+    # marksman
+    # deno # AstroLSP dependency
+    wget # AstroLSP dependency
+    unzip # AstroLSP dependency
   ];
   services.udisks2.enable = true;
   # Some programs need SUID wrappers, can be configured further or are
