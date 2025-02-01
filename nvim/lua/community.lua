@@ -12,7 +12,9 @@ return {
   { import = "astrocommunity.pack.json" },
   { import = "astrocommunity.pack.typescript-all-in-one" },
   { import = "astrocommunity.markdown-and-latex.render-markdown-nvim" },
---  { import = "astrocommunity.note-taking.obsidian-nvim" },
+  --  { import = "astrocommunity.note-taking.obsidian-nvim" },
+  { import = "astrocommunity.media.img-clip-nvim" },
   { import = "astrocommunity.pack.markdown" },
-
+  { import = "astrocommunity.pack.html-css" },
+  { import = "astrocommunity.programming-language-support.csv-vim" },
 }
