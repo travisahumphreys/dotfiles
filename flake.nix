@@ -17,6 +17,7 @@
   outputs = {
     self,
     nixpkgs,
+    home-manager,
     ...
   } @ inputs: {
     nixosConfigurations."thinkpad" = nixpkgs.lib.nixosSystem {
@@ -24,7 +25,12 @@
       specialArgs = {inherit inputs;};
       modules = [
         ./nixos/configuration.nix
-        #inputs.home-manager.nixosModules.default
+        home-manager.nixosModules.home-manager # Enable the home-manager module
+        {
+          home-manager.useGlobalPkgs = true; # Use the system's package set
+          home-manager.useUserPackages = true; # Install packages to user profile
+          home-manager.users.travis = import ./nixos/home.nix; # Your home config
+        }
       ];
     };
   };
