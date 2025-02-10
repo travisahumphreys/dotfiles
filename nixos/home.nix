@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  inputs,
   ...
 }: {
   home.username = "travis";
@@ -11,7 +12,19 @@
 
   # Specify the state version
   home.stateVersion = "25.05"; # Please read the comment below about the version
-
+  wayland.windowManager.hyprland = {
+    enable = true;
+    package = null;
+    portalPackage = null;
+    extraConfig = ''
+      ${builtins.readFile ../hypr/hyprland.conf}
+    '';
+    plugins = [
+      inputs.hyprland-plugins.packages.${pkgs.stdenv.hostPlatform.system}.hyprwinwrap
+      inputs.hyprland-plugins.packages.${pkgs.stdenv.hostPlatform.system}.hyprexpo
+      inputs.hyprland-plugins.packages.${pkgs.stdenv.hostPlatform.system}.hyprbars
+    ];
+  };
   # Your home-manager configurations go here
   programs = {
     git = {

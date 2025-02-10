@@ -27,6 +27,7 @@
         ./nixos/configuration.nix
         home-manager.nixosModules.home-manager # Enable the home-manager module
         {
+          home-manager.extraSpecialArgs = {inherit inputs;};
           home-manager.useGlobalPkgs = true; # Use the system's package set
           home-manager.useUserPackages = true; # Install packages to user profile
           home-manager.users.travis = import ./nixos/home.nix; # Your home config
