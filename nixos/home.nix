@@ -4,6 +4,9 @@
   inputs,
   ...
 }: {
+  imports = [
+    inputs.hyprland.homeManagerModules.default
+  ];
   home.username = "travis";
   home.homeDirectory = "/home/travis";
 
