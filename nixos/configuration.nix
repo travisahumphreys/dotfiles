@@ -83,20 +83,6 @@
     packages = with pkgs; [];
   };
 
-  fonts = {
-    packages = with pkgs; [nerd-fonts.caskaydia-cove font-awesome];
-    fontconfig = {
-      enable = true;
-      defaultFonts = {
-        serif = ["CaskaydiaCove"];
-        monospace = ["CaskaydiaCove"];
-      };
-    };
-  };
-  # xdg.portal = {
-  #   enable = true;
-  #   extraPortals = [pkgs.xdg-desktop-portal-hyprland];
-  # };
 
   programs.hyprland = {
     package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
