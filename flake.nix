@@ -11,12 +11,16 @@
     hyprland-plugins = {
       url = "github:hyprwm/hyprland-plugins";
       inputs.hyprland.follows = "hyprland";
-    };
+    
+   };
+    zen-browser.url = "github:youwen5/zen-browser-flake";
+    zen-browser.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = {
     self,
     nixpkgs,
+    home-manager,
     ...
   } @ inputs: {
     nixosConfigurations."thinkpad" = nixpkgs.lib.nixosSystem {
@@ -24,7 +28,13 @@
       specialArgs = {inherit inputs;};
       modules = [
         ./nixos/configuration.nix
-        #inputs.home-manager.nixosModules.default
+        home-manager.nixosModules.home-manager # Enable the home-manager module
+        {
+          home-manager.extraSpecialArgs = {inherit inputs;};
+          home-manager.useGlobalPkgs = true; # Use the system's package set
+          home-manager.useUserPackages = true; # Install packages to user profile
+          home-manager.users.travis = import ./nixos/home.nix; # Your home config
+        }
       ];
     };
   };

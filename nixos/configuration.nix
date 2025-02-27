@@ -83,23 +83,10 @@
     packages = with pkgs; [];
   };
 
-  fonts = {
-    packages = with pkgs; [nerd-fonts.caskaydia-cove font-awesome];
-    fontconfig = {
-      enable = true;
-      defaultFonts = {
-        serif = ["CaskaydiaCove"];
-        monospace = ["CaskaydiaCove"];
-      };
-    };
-  };
-  # xdg.portal = {
-  #   enable = true;
-  #   extraPortals = [pkgs.xdg-desktop-portal-hyprland];
-  # };
 
   programs.hyprland = {
     package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+    portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
     xwayland.enable = true;
     enable = true;
   };
@@ -136,6 +123,13 @@
     VISUAL = "nvim";
   };
 
+  programs.nix-ld.enable = true;
+
+  programs.nix-ld.libraries = with pkgs; [
+    marksman
+    icu
+    # Add any missing dynamic libraries for unpackaged programs
+  ];
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
@@ -161,6 +155,7 @@
     hyprpolkitagent
     alejandra
     deadnix
+    freecad-wayland
     nixd
     wl-clipboard # clipboard hook
     udiskie
@@ -175,10 +170,13 @@
     grim
     slurp
     zbar
-    # marksman
+    qrrs
     # deno # AstroLSP dependency
     wget # AstroLSP dependency
     unzip # AstroLSP dependency
+    slides
+    graph-easy
+  inputs.zen-browser.packages.${pkgs.system}.default
   ];
   services.udisks2.enable = true;
   # Some programs need SUID wrappers, can be configured further or are
