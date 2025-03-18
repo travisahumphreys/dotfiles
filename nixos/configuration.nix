@@ -122,6 +122,9 @@
     EDITOR = "nvim";
     VISUAL = "nvim";
   };
+fonts.packages = with pkgs; [
+    nerd-fonts.caskaydia-cove
+  ];
 
   programs.nix-ld.enable = true;
 
@@ -176,7 +179,8 @@
     unzip # AstroLSP dependency
     slides
     graph-easy
-  inputs.zen-browser.packages.${pkgs.system}.default
+    inputs.zen-browser.packages.${pkgs.system}.default
+    ripgrep
   ];
   services.udisks2.enable = true;
   # Some programs need SUID wrappers, can be configured further or are

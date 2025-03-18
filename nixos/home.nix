@@ -7,14 +7,16 @@
   imports = [
     inputs.hyprland.homeManagerModules.default
   ];
-  home.username = "travis";
-  home.homeDirectory = "/home/travis";
-
-  # Let home-manager manage itself
-  programs.home-manager.enable = true;
-
-  # Specify the state version
-  home.stateVersion = "25.05"; # Please read the comment below about the version
+  home = {
+    username = "travis";
+    homeDirectory = "/home/travis";
+    stateVersion = "25.05"; 
+    packages = with pkgs; [ 
+    # Add user packages here
+      presenterm
+    ];
+  };
+ 
   wayland.windowManager.hyprland = {
     enable = true;
     package = null;
@@ -22,24 +24,22 @@
     extraConfig = ''
       ${builtins.readFile ../hypr/hyprland.conf}
     '';
-    plugins = [
-      inputs.hyprland-plugins.packages.${pkgs.stdenv.hostPlatform.system}.hyprwinwrap
-      inputs.hyprland-plugins.packages.${pkgs.stdenv.hostPlatform.system}.hyprexpo
-      inputs.hyprland-plugins.packages.${pkgs.stdenv.hostPlatform.system}.hyprbars
+    plugins = with inputs.hyprland-plugins.packages.${pkgs.stdenv.hostPlatform.system}; [
+      hyprwinwrap
+      hyprexpo
+      hyprbars
     ];
   };
+
   # Your home-manager configurations go here
   programs = {
+    home-manager.enable = true;
     git = {
       enable = true;
       userName = "travis-humphreys";
       userEmail = "travis.a.humphreys@gmail.com";
     };
-    # Add more program configurations as needed
+    bottom.enable = true;
   };
 
-  # Packages you want installed in your user profile
-  home.packages = with pkgs; [
-    # Add your packages here
-  ];
 }
