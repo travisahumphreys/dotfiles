@@ -31,15 +31,26 @@
     ];
   };
 
+  services.hyprpaper = {
+    enable = true;
+    settings = {
+      preload = "../hypr/wall.png";
+      wallpaper = "../hypr/wall.png";
+    };
+  };
   # Your home-manager configurations go here
   programs = {
+
     home-manager.enable = true;
+    
     git = {
       enable = true;
       userName = "travis-humphreys";
       userEmail = "travis.a.humphreys@gmail.com";
     };
+    
     bottom.enable = true;
+  
   };
 
 }

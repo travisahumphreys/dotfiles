@@ -194,8 +194,18 @@ fonts.packages = with pkgs; [
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
-
+  services.openssh = {
+    enable = true;
+ #  startWhenNeeded = true;
+    ports = [22];
+    settings = {
+      PasswordAuthentication = true;
+      AllowUsers = null;
+      UseDns = true;
+      PermitRootLogin = "prohibit-password";
+      LogLevel = "VERBOSE";
+    };
+  };
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
