@@ -33,9 +33,10 @@
 
   services.hyprpaper = {
     enable = true;
+    package = inputs.hyprpaper.packages.${pkgs.stdenv.hostPlatform.system}.default;
     settings = {
-      preload = "../hypr/wall.png";
-      wallpaper = "../hypr/wall.png";
+      preload = ["../hypr/wall.png"];
+     wallpaper = [" , ../hypr/wall.png"];
     };
   };
   # Your home-manager configurations go here

@@ -2,19 +2,52 @@
   description = "Nixos config flake";
 
   inputs = {
+
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
     hyprland.url = "github:hyprwm/Hyprland";
+    
+      hyprland-contrib = {
+      url = "github:hyprwm/contrib";
+      inputs.nixpkgs.follows = "hyprland/nixpkgs";
+    };
+
     hyprland-plugins = {
       url = "github:hyprwm/hyprland-plugins";
       inputs.hyprland.follows = "hyprland";
-    
-   };
-    zen-browser.url = "github:youwen5/zen-browser-flake";
-    zen-browser.inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    hyprlock = {
+      url = "github:hyprwm/hyprlock";
+      inputs = {
+        hyprgraphics.follows = "hyprland/hyprgraphics";
+        hyprlang.follows = "hyprland/hyprlang";
+        hyprutils.follows = "hyprland/hyprutils";
+        nixpkgs.follows = "hyprland/nixpkgs";
+        systems.follows = "hyprland/systems";
+      };
+    };
+
+    hyprpaper = {
+      url = "github:hyprwm/hyprpaper";
+      inputs = {
+        hyprgraphics.follows = "hyprland/hyprgraphics";
+        hyprlang.follows = "hyprland/hyprlang";
+        hyprutils.follows = "hyprland/hyprutils";
+        nixpkgs.follows = "hyprland/nixpkgs";
+        systems.follows = "hyprland/systems";
+      };
+    };
+
+    zen-browser = {
+      url = "github:youwen5/zen-browser-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
