@@ -80,7 +80,7 @@
     isNormalUser = true;
     description = "travis";
     extraGroups = ["networkmanager" "wheel" "input"];
-    packages = with pkgs; [];
+    packages = with pkgs; [ claude-code ];
   };
 
 
