@@ -25,7 +25,7 @@
       ${builtins.readFile ../hypr/hyprland.conf}
     '';
     plugins = with inputs.hyprland-plugins.packages.${pkgs.stdenv.hostPlatform.system}; [
-      hyprwinwrap
+      #    hyprwinwrap
       hyprexpo
       hyprbars
     ];
