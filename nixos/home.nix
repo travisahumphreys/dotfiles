@@ -6,6 +6,7 @@
 }: {
   imports = [
     inputs.hyprland.homeManagerModules.default
+    # ../hypr/cursor.nix
   ];
   home = {
     username = "travis";
@@ -24,11 +25,11 @@
     extraConfig = ''
       ${builtins.readFile ../hypr/hyprland.conf}
     '';
-    plugins = with inputs.hyprland-plugins.packages.${pkgs.stdenv.hostPlatform.system}; [
-      #    hyprwinwrap
-      hyprexpo
-      hyprbars
-    ];
+    # plugins = with inputs.hyprland-plugins.packages.${pkgs.stdenv.hostPlatform.system}; [
+    #   #    hyprwinwrap
+    #   hyprexpo
+    #   hyprbars
+    # ];
   };
 
   services.hyprpaper = {
@@ -39,6 +40,7 @@
      wallpaper = [" , ../hypr/wall.png"];
     };
   };
+ 
   # Your home-manager configurations go here
   programs = {
 

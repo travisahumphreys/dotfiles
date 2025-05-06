@@ -151,10 +151,8 @@ fonts.packages = with pkgs; [
     glibc
     ags # widget system / black magic
     gnumake # compiler
-    brightnessctl
-    hyprpaper # wallpaper daemon
+    brightnessctl # wallpaper daemon
     hyprshot
-    hyprcursor
     hyprpolkitagent
     alejandra
     deadnix
