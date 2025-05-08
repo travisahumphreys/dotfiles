@@ -26,11 +26,11 @@
     extraConfig = ''
       ${builtins.readFile ../hypr/hyprland.conf}
     '';
-    # plugins = with inputs.hyprland-plugins.packages.${pkgs.stdenv.hostPlatform.system}; [
-    #   #    hyprwinwrap
-    #   hyprexpo
-    #   hyprbars
-    # ];
+    plugins = with inputs.hyprland-plugins.packages.${pkgs.stdenv.hostPlatform.system}; [
+      #    hyprwinwrap
+      hyprexpo
+      hyprbars
+    ];
   };
   ## The hyprpaper service; todo: add wallpapers to flake, use relative paths, assign wallpaper to variable
   services.hyprpaper = {

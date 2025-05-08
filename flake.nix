@@ -17,14 +17,14 @@
       inputs.nixpkgs.follows = "hyprland/nixpkgs";
     };
 
-    # hyprland-plugins = {
-    #   url = "github:hyprwm/hyprland-plugins";
-    #  inputs = {
-    #     nixpkgs.follows = "hyprland/nixpkgs";
-    #     systems.follows = "hyprland/systems";
-    #   };
-    #
-    # };
+    hyprland-plugins = {
+      url = "github:hyprwm/hyprland-plugins";
+     inputs = {
+        nixpkgs.follows = "hyprland/nixpkgs";
+        systems.follows = "hyprland/systems";
+      };
+
+    };
 
     hyprlock = {
       url = "github:hyprwm/hyprlock";
