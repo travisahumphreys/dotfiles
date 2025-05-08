@@ -15,6 +15,7 @@
     packages = with pkgs; [ 
     # Add user packages here
       presenterm
+      inputs.hyprpaper.packages.${pkgs.stdenv.hostPlatform.system}.default
     ];
   };
  
@@ -31,13 +32,13 @@
     #   hyprbars
     # ];
   };
-
+  ## The hyprpaper service; todo: add wallpapers to flake, use relative paths, assign wallpaper to variable
   services.hyprpaper = {
     enable = true;
     package = inputs.hyprpaper.packages.${pkgs.stdenv.hostPlatform.system}.default;
     settings = {
-      preload = ["../hypr/wall.png"];
-     wallpaper = [" , ../hypr/wall.png"];
+      preload = ["/home/travis/dotfiles/hypr/wall.png"];
+     wallpaper = [" , /home/travis/dotfiles/hypr/wall.png"];
     };
   };
  
