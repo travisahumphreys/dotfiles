@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:wiki.hyprland.org)",
+      "WebFetch(domain:wiki.hyprland.org)",
+      "Bash(ls:*)",
+      "Bash(ls:*)"
+    ],
+    "deny": []
+  }
+}
