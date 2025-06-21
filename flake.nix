@@ -12,7 +12,7 @@
 
     hyprland.url = "github:hyprwm/Hyprland";
     
-      hyprland-contrib = {
+    hyprland-contrib = {
       url = "github:hyprwm/contrib";
       inputs.nixpkgs.follows = "hyprland/nixpkgs";
     };

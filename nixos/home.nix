@@ -15,6 +15,7 @@
     packages = with pkgs; [ 
     # Add user packages here
       presenterm
+      multiviewer-for-f1
       inputs.hyprpaper.packages.${pkgs.stdenv.hostPlatform.system}.default
     ];
   };

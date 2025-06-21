@@ -179,6 +179,9 @@ fonts.packages = with pkgs; [
     graph-easy
     inputs.zen-browser.packages.${pkgs.system}.default
     ripgrep
+    barcode
+    zint
+    visidata
   ];
   services.udisks2.enable = true;
   # Some programs need SUID wrappers, can be configured further or are
