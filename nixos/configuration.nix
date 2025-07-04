@@ -122,10 +122,21 @@
     EDITOR = "nvim";
     VISUAL = "nvim";
   };
-fonts.packages = with pkgs; [
+fonts = {
+  packages = with pkgs; [
     nerd-fonts.caskaydia-cove
+    dejavu_fonts
+    noto-fonts
   ];
-
+  fontconfig = {
+      defaultFonts = {
+    monospace = [ "CaskaydiaCove Nerd Font" ];
+    sansSerif = [ "CaskaydiaCove Nerd Font" "Noto Sans" ];
+    serif = [ "Noto Serif" ];
+    emoji = [ "Noto Color Emoji" ];
+    };
+    };
+  };
   programs.nix-ld.enable = true;
 
   programs.nix-ld.libraries = with pkgs; [
@@ -181,6 +192,8 @@ fonts.packages = with pkgs; [
     ripgrep
     barcode
     zint
+    imagemagick
+    ghostscript
     visidata
   ];
   services.udisks2.enable = true;

@@ -14,6 +14,7 @@
     stateVersion = "25.05"; 
     packages = with pkgs; [ 
     # Add user packages here
+      typst
       presenterm
       multiviewer-for-f1
       inputs.hyprpaper.packages.${pkgs.stdenv.hostPlatform.system}.default
