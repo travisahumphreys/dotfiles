@@ -144,8 +144,12 @@ fonts = {
     icu
     # Add any missing dynamic libraries for unpackaged programs
   ];
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
+
+  programs.nix-index = {
+    enable = true;
+    enableBashIntegration = true;  # or zshIntegration/fishIntegration
+  };
+
   environment.systemPackages = with pkgs; [
     neovim # editor
     zellij # terminal multiplexer
@@ -195,6 +199,10 @@ fonts = {
     imagemagick
     ghostscript
     visidata
+    gemini-cli
+    quickshell
+    pop
+    vesktop
   ];
   services.udisks2.enable = true;
   # Some programs need SUID wrappers, can be configured further or are
