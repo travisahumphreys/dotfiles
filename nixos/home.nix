@@ -56,6 +56,19 @@
     };
     
     bottom.enable = true;
+
+    rofi = {
+      enable = true;
+      package = pkgs.rofi-wayland;
+      theme = "DarkBlue";
+      extraConfig = {
+        modi = "drun,run,window,ssh";
+        show-icons = true;
+        display-drun = " Apps";
+        display-run = " Run";
+        display-window = " Window";
+      };
+    };
   
   };
 
