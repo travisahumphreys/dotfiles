@@ -23,10 +23,10 @@
   hardware.amdgpu = {
     initrd.enable = true;
     opencl.enable = true;
-    amdvlk = {
-      enable = true;
-      support32Bit.enable = true;
-    };
+    # amdvlk = {
+    #   enable = true;
+    #   support32Bit.enable = true;
+    # };
   };
 
   # hardware.graphics = {
@@ -85,7 +85,7 @@
 
 
   programs.hyprland = {
-    package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+    package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland-debug;
     portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
     xwayland.enable = true;
     enable = true;
@@ -159,7 +159,7 @@ fonts = {
     btop # like htop
     fastfetch # look, me shiny
     dunst # notification daemon
-    rofi-wayland # menu
+    # rofi-wayland # menu
     inkscape # vector graphics
     obsidian # note-taking with markdown
     zig # compiler
@@ -195,7 +195,7 @@ fonts = {
     inputs.zen-browser.packages.${pkgs.system}.default
     ripgrep
     barcode
-    zint
+    zint-qt
     imagemagick
     ghostscript
     visidata
@@ -208,6 +208,9 @@ fonts = {
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
+  
+  services.upower.enable = true;
+  
   programs.gnupg.agent = {
     enable = true;
     enableSSHSupport = true;
@@ -223,7 +226,7 @@ fonts = {
     settings = {
       PasswordAuthentication = true;
       AllowUsers = null;
-      UseDns = true;
+  UseDns = true;
       PermitRootLogin = "prohibit-password";
       LogLevel = "VERBOSE";
     };

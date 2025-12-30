@@ -15,15 +15,15 @@
     packages = with pkgs; [ 
     # Add user packages here
       typst
+      jq
       presenterm
-      multiviewer-for-f1
       inputs.hyprpaper.packages.${pkgs.stdenv.hostPlatform.system}.default
     ];
   };
  
   wayland.windowManager.hyprland = {
     enable = true;
-    package = null;
+    package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland-debug;
     portalPackage = null;
     extraConfig = ''
       ${builtins.readFile ../hypr/hyprland.conf}
@@ -36,11 +36,13 @@
   };
   ## The hyprpaper service; todo: add wallpapers to flake, use relative paths, assign wallpaper to variable
   services.hyprpaper = {
+    # ipc = "on";
+    # splash = false;
     enable = true;
     package = inputs.hyprpaper.packages.${pkgs.stdenv.hostPlatform.system}.default;
     settings = {
       preload = ["/home/travis/dotfiles/hypr/wall.png"];
-     wallpaper = [" , /home/travis/dotfiles/hypr/wall.png"];
+     wallpaper = ["eDP-1 , /home/travis/dotfiles/hypr/wall.png"];
     };
   };
  
@@ -51,15 +53,22 @@
     
     git = {
       enable = true;
-      userName = "travis-humphreys";
-      userEmail = "travis.a.humphreys@gmail.com";
+      settings = {
+      user = {
+        name = "travis-humphreys";
+        email = "travis.a.humphreys@gmail.com";
+      };
+      };
+      
     };
     
     bottom.enable = true;
 
+    ashell.enable = true;
+
     rofi = {
       enable = true;
-      package = pkgs.rofi-wayland;
+      package = pkgs.rofi;
       theme = "DarkBlue";
       extraConfig = {
         modi = "drun,run,window,ssh";
