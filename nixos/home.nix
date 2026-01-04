@@ -23,7 +23,7 @@
  
   wayland.windowManager.hyprland = {
     enable = true;
-    package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland-debug;
+    package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
     portalPackage = null;
     extraConfig = ''
       ${builtins.readFile ../hypr/hyprland.conf}

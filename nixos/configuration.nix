@@ -85,7 +85,7 @@
 
 
   programs.hyprland = {
-    package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland-debug;
+    package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
     portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
     xwayland.enable = true;
     enable = true;
@@ -199,7 +199,6 @@ fonts = {
     imagemagick
     ghostscript
     visidata
-    gemini-cli
     quickshell
     pop
     vesktop
