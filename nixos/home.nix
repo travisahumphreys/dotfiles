@@ -17,6 +17,7 @@
       typst
       jq
       presenterm
+      bootdev-cli
       inputs.hyprpaper.packages.${pkgs.stdenv.hostPlatform.system}.default
     ];
   };

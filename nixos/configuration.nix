@@ -201,7 +201,7 @@ fonts = {
     visidata
     quickshell
     pop
-    vesktop
+    github-cli
   ];
   services.udisks2.enable = true;
   # Some programs need SUID wrappers, can be configured further or are
