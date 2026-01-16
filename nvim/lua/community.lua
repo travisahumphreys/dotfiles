@@ -25,5 +25,4 @@ return {
   { import = "astrocommunity.media.img-clip-nvim" },
   { import = "astrocommunity.pack.markdown" },
   { import = "astrocommunity.pack.html-css" },
-  { import = "astrocommunity.programming-language-support.csv-vim" },
 }
