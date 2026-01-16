@@ -14,30 +14,39 @@
   ];
 
   # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-
-  boot.kernelPackages = pkgs.linuxPackages_zen;
-
-  hardware.amdgpu = {
-    initrd.enable = true;
-    opencl.enable = true;
+  boot = {
+    kernelPackages = pkgs.linuxPackages_zen;
+    loader = {
+      systemd-boot.enable = true;      
+      efi.canTouchEfiVariables = true;   
+    };
   };
 
-  hardware.bluetooth.enable = true;
-  hardware.bluetooth.powerOnBoot = true; # powers up the default Bluetooth controller on boot
-
-  # Enable networking
-  networking.hostName = "thinkpad"; # Define your hostname.
-  networking.networkmanager.enable = true;
-
-  nix.extraOptions = ''experimental-features = nix-command flakes'';
-  nix.settings = {
-    substituters = ["https://hyprland.cachix.org"];
-    trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
+  hardware = {
+    amdgpu = {
+      initrd.enable = true;
+      opencl.enable = true;
+    };
+    bluetooth = {
+      enable = true;                                                           
+      powerOnBoot = true; # powers up the default Bluetooth controller on boot 
+    };
   };
+ 
+  networking = {
+    hostName = "thinkpad"; # Define your hostname.
+    networkmanager.enable = true;
+  };
+
   nixpkgs.config.allowUnfree = true;
   
+  nix = {
+    extraOptions = ''experimental-features = nix-command flakes'';
+    settings = {
+      substituters = ["https://hyprland.cachix.org"];
+      trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
+    };
+  };
 
   security.rtkit.enable = true;
 
@@ -48,36 +57,48 @@
     packages = with pkgs; [ claude-code ];
   };
 
-  programs.hyprland = {
-    package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
-    portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
-    xwayland.enable = true;
-    enable = true;
-  };
+  programs = {
+    hyprland = {
+      package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+      portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
+      xwayland.enable = true;
+      enable = true;
+    };
 
-  programs.git = {
-    enable = true;
-  };
+    git = {
+      enable = true;
+    };
 
-  programs.firefox = {
-    enable = true;
-  };
+    yazi = {
+      enable = true;
+    };
+    
+    steam = {
+      enable = true;
+      gamescopeSession.enable = true;
+      extraCompatPackages = with pkgs; [proton-ge-bin];
+    };
 
-  programs.yazi = {
-    enable = true;
-  };
+    dconf.enable = true;
+    
+    nix-ld = {
+      enable = true;
+      libraries = with pkgs; [
+        marksman
+        icu
+        # Add any missing dynamic libraries for unpackaged programs
+      ];
+    };
+
+    nix-index = {
+      enable = true;
+      enableBashIntegration = true;  # or zshIntegration/fishIntegration
+    };
   
-  programs.steam = {
-    enable = true;
-    gamescopeSession.enable = true;
-    extraCompatPackages = with pkgs; [proton-ge-bin];
-  };
-
-  programs.dconf.enable = true;
-
-  environment.variables = {
-    EDITOR = "nvim";
-    VISUAL = "nvim";
+    gnupg.agent = {
+      enable = true;
+      enableSSHSupport = true;
+    };
   };
 
   fonts = {
@@ -97,17 +118,9 @@
     };
   };
   
-  programs.nix-ld.enable = true;
-
-  programs.nix-ld.libraries = with pkgs; [
-    marksman
-    icu
-    # Add any missing dynamic libraries for unpackaged programs
-  ];
-
-  programs.nix-index = {
-    enable = true;
-    enableBashIntegration = true;  # or zshIntegration/fishIntegration
+  environment.variables = {
+    EDITOR = "nvim";
+    VISUAL = "nvim";
   };
 
   environment.systemPackages = with pkgs; [
@@ -164,60 +177,49 @@
     github-cli
   ];
   
-  programs.gnupg.agent = {
-    enable = true;
-    enableSSHSupport = true;
-  };
+  services = {
+    displayManager = { 
+      ly.enable = true;
+      ly.settings = {animation = "doom";};
+    };
 
-  # List services that you want to enable:
+    xserver.xkb = {
+      layout = "us";
+      variant = "";
+    };
+    
+    udisks2.enable = true;
+    upower.enable = true;
 
-  services.displayManager.ly.enable = true;
-  services.displayManager.ly.settings = {animation = "doom";};
+    pipewire = {
+      enable = true;
+      alsa.enable = true;
+      alsa.support32Bit = true;
+      pulse.enable = true;
+      jack.enable = true;
+      wireplumber.enable = true;
+      extraConfig.pipewire."92-low-latency" = {
+        "context.properties" = {
+          "default.clock.rate" = 44100;
+          "default.clock.quantum" = 512;
+          "default.clock.min-quantum" = 512;
+          "default.clock.max-quantum" = 512;
+        };
+      };
+    };
 
-  # Configure keymap in X11
-  services.xserver.xkb = {
-    layout = "us";
-    variant = "";
-  };
-  services.udisks2.enable = true;
-  services.upower.enable = true;
-
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    jack.enable = true;
-    wireplumber.enable = true;
-    extraConfig.pipewire."92-low-latency" = {
-      "context.properties" = {
-        "default.clock.rate" = 44100;
-        "default.clock.quantum" = 512;
-        "default.clock.min-quantum" = 512;
-        "default.clock.max-quantum" = 512;
+    openssh = {
+      enable = true;
+      ports = [22];
+      settings = {
+        PasswordAuthentication = true;
+        AllowUsers = null;
+        UseDns = true;
+        PermitRootLogin = "prohibit-password";
+        LogLevel = "VERBOSE";
       };
     };
   };
-
-  # Enable the OpenSSH daemon.
-  services.openssh = {
-    enable = true;
- #  startWhenNeeded = true;
-    ports = [22];
-    settings = {
-      PasswordAuthentication = true;
-      AllowUsers = null;
-      UseDns = true;
-      PermitRootLogin = "prohibit-password";
-      LogLevel = "VERBOSE";
-    };
-  };
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
-
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It‘s perfectly fine and recommended to leave
