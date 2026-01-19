@@ -35,16 +35,20 @@
     #   hyprbars
     # ];
   };
-  ## The hyprpaper service; todo: add wallpapers to flake, use relative paths, assign wallpaper to variable
+ 
   services.hyprpaper = {
-    # ipc = "on";
-    # splash = false;
     enable = true;
     package = inputs.hyprpaper.packages.${pkgs.stdenv.hostPlatform.system}.default;
     settings = {
+      ipc = "on";
       splash = false;
-      preload = ["/home/travis/dotfiles/hypr/wall.png"];
-      wallpaper = ["eDP-1 , /home/travis/dotfiles/hypr/wall.png"];
+      # preload = ["/home/travis/dotfiles/hypr/wall.png"];
+      wallpaper = [
+        {
+          monitor = "eDP-1";
+          path = "/home/travis/dotfiles/hypr/wall.png";
+        }
+      ];
     };
   };
  
