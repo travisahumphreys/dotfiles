@@ -18,7 +18,7 @@
       jq
       presenterm
       bootdev-cli
-      inputs.hyprpaper.packages.${pkgs.stdenv.hostPlatform.system}.default
+      #  inputs.hyprpaper.packages.${pkgs.stdenv.hostPlatform.system}.default
     ];
   };
  
@@ -42,8 +42,9 @@
     enable = true;
     package = inputs.hyprpaper.packages.${pkgs.stdenv.hostPlatform.system}.default;
     settings = {
+      splash = false;
       preload = ["/home/travis/dotfiles/hypr/wall.png"];
-     wallpaper = ["eDP-1 , /home/travis/dotfiles/hypr/wall.png"];
+      wallpaper = ["eDP-1 , /home/travis/dotfiles/hypr/wall.png"];
     };
   };
  

@@ -138,7 +138,7 @@
     glibc
     gcc
     gnumake # compiler
-    brightnessctl # wallpaper daemon
+    brightnessctl 
     hyprshot
     hyprpolkitagent
     alejandra
