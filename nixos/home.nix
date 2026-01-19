@@ -55,12 +55,11 @@
     git = {
       enable = true;
       settings = {
-      user = {
-        name = "travis-humphreys";
-        email = "travis.a.humphreys@gmail.com";
+        user = {
+          name = "travis-humphreys";
+          email = "travis.a.humphreys@gmail.com";
+        };
       };
-      };
-      
     };
     
     bottom.enable = true;

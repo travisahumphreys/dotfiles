@@ -94,7 +94,7 @@
       enable = true;
       enableBashIntegration = true;  # or zshIntegration/fishIntegration
     };
-  
+    
     gnupg.agent = {
       enable = true;
       enableSSHSupport = true;
@@ -137,7 +137,6 @@
     zig # compiler
     glibc
     gcc
-    ags # widget system / black magic
     gnumake # compiler
     brightnessctl # wallpaper daemon
     hyprshot
