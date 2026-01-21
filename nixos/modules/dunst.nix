@@ -18,7 +18,7 @@
         transparency = 0;
 
         # ── Text ────────────────────────────────────────────
-        font = "Sans 10";
+        font = "CaskaydiaCove NF";
         markup = "full";
         format = "<b>%s</b>\\n%b";
         alignment = "left";

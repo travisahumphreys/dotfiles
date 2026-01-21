@@ -1,73 +1,76 @@
 {
-  config,
   pkgs,
   inputs,
   ...
-}: {
+}: 
+  let
+    activeCursor = pkgs.catppuccin-cursors.mochaDark;
+    zen-browser = inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default;
+  in {
   imports = [
     inputs.hyprland.homeManagerModules.default
     ./modules/dunst.nix
-    # ../hypr/cursor.nix
   ];
   home = {
     username = "travis";
     homeDirectory = "/home/travis";
-    stateVersion = "25.05"; 
+    stateVersion = "25.05";
     packages = with pkgs; [ 
       
-      # ---------- Terminal Environment --------- #
-      kitty # terminal emulator
-      neovim # Default Editor
-      zellij # Terminal Multiplexer
+      #------------------- Terminal Environment ----------#
+      kitty # ------------- Terminal Emulator ------------#
+      neovim # ------------ Default Editor ---------------#
+      zellij # ------------ Terminal Multiplexer ---------#
       
-      # ---------- Dev Languages ---------------- #
-      typst
-      jq
-      go
-      python3
-      nodejs_25
-      ripgrep
-      fzf
+      #---------------- Dev Languages --------------------#
+      typst #----------- Document Formatting / Gen -------#
+      jq #-------------- JSON Query ----------------------#
+      go #-------------- Golang --------------------------#
+      python3 #--------- Python --------------------------#
+      nodejs_25 #------- NodeJS --------------------------#
+      ripgrep #--------- Regular Expressions -------------#
+      fzf #------------- Fuzzy Finder --------------------#
       
-      # ---------- TUI Utilites ----------------- #
-      btop # System Resource Monitor
-      lynx # TUI web browser
-      fastfetch # look, me shiny
-      clipse # Clipboard service
-      visidata # Spreadsheets and Databases
-      lazygit # Git TUI
-      pop # TUI email utility
-      github-cli # Auth and settings
-      slides # Terminal-based Presentations
-      graph-easy # Charts and Graphs
-      wget # AstroLSP dependency
-      unzip # AstroLSP dependency
-      presenterm
+      #---------------- TUI Utilites ---------------------#
+      btop #------------ System Resource Monitor ---------#
+      lynx #------------ TUI web browser -----------------#
+      fastfetch #------- look, me shiny ------------------#
+      clipse #---------- Clipboard service ---------------#
+      visidata #-------- Spreadsheets and Databases ------#
+      lazygit #--------- Git TUI -------------------------#
+      pop #------------- TUI email utility ---------------#
+      github-cli #------ Auth and settings ---------------#
+      slides #---------- Terminal-based Presentations ----#
+      presenterm #------ Terminal-based Presentations ----#
+      graph-easy #------ Charts and Graphs ---------------#
+      wget #------------ Barebones HTTP ------------------#
+      unzip #----------- File Compression ----------------#
+      claude-code #----- AI Agent ------------------------#
       
-      # ---------- Nix Tooling ------------------ #
-      alejandra
-      deadnix
-      nixd
+      #---------------- Nix Tooling ----------------------#
+      alejandra #------- Nix Formatter -------------------#
+      deadnix #--------- Nix Linter ----------------------#
+      nixd #------------ Nix LSP -------------------------#
       
-      # ---------- Miscellaneous ---------------- #
-      quickshell
-      catppuccin-cursors.mochaDark
+      #---------------- Miscellaneous --------------------#
+      quickshell #------ Widget Maker --------------------#
+      activeCursor #---- Mocha Dark Cursor Theme ---------#
       
-      # ---------- Work Utilities --------------- #
-      zint-qt
-      zbar
-      qrrs
+      #---------------- Work Utilities -------------------#
+      zint-qt #--------- Barcode Generator ---------------#
+      zbar #------------ Barcode Reader ------------------#
+      qrrs #------------ QR Code Generator / Reader ------#
       
-      # ---------- GUI Applications ------------- #
-      inkscape # vector graphics
-      obsidian # note-taking with markdown
-      inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
-      
+      #---------------- GUI Applications -----------------#
+      inkscape #-------- Vector Graphics -----------------#
+      obsidian #-------- Markdown Notes ------------------#
+      zen-browser #----- Web Browser ---------------------#
+
       # ---------- Learning --------------------- #
       bootdev-cli
     ];
   };
- 
+
   wayland.windowManager.hyprland = {
     enable = true;
     package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
