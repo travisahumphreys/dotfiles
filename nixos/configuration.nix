@@ -124,56 +124,24 @@
   };
 
   environment.systemPackages = with pkgs; [
-    neovim # editor
-    zellij # terminal multiplexer
-    kitty # terminal emulator
-    lynx # tui web browser
-    clipse # clipboard service
-    btop # like htop
-    fastfetch # look, me shiny
-    dunst # notification daemon
-    inkscape # vector graphics
-    obsidian # note-taking with markdown
+      
+    # ---------- System Utilites / Dev Tools ----- #
     zig # compiler
     glibc
     gcc
     gnumake # compiler
+    clang
+
+    # ---------- Hardware Control ---------------- #
+    pavucontrol # Pipwire Volume Control
     brightnessctl 
+
+    
+    # ---------- Wayland / hypr Utilites --------- #
     hyprshot
     hyprpolkitagent
-    alejandra
-    deadnix
-    nixd
     wl-clipboard # clipboard hook
-    udiskie
-    catppuccin-cursors.mochaDark
-    lazygit
-    fzf
-    clang
-    go
-    python3
-    nodejs_25
-    pavucontrol
-    geekbench
-    grim
-    slurp
-    zbar
-    qrrs
-    # deno # AstroLSP dependency
-    wget # AstroLSP dependency
-    unzip # AstroLSP dependency
-    slides
-    graph-easy
-    inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
-    ripgrep
-    barcode
-    zint-qt
-    imagemagick
-    ghostscript
-    visidata
-    quickshell
-    pop
-    github-cli
+    
   ];
   
   services = {

@@ -6,6 +6,7 @@
 }: {
   imports = [
     inputs.hyprland.homeManagerModules.default
+    ./modules/dunst.nix
     # ../hypr/cursor.nix
   ];
   home = {
@@ -13,12 +14,57 @@
     homeDirectory = "/home/travis";
     stateVersion = "25.05"; 
     packages = with pkgs; [ 
-    # Add user packages here
+      
+      # ---------- Terminal Environment --------- #
+      kitty # terminal emulator
+      neovim # Default Editor
+      zellij # Terminal Multiplexer
+      
+      # ---------- Dev Languages ---------------- #
       typst
       jq
+      go
+      python3
+      nodejs_25
+      ripgrep
+      fzf
+      
+      # ---------- TUI Utilites ----------------- #
+      btop # System Resource Monitor
+      lynx # TUI web browser
+      fastfetch # look, me shiny
+      clipse # Clipboard service
+      visidata # Spreadsheets and Databases
+      lazygit # Git TUI
+      pop # TUI email utility
+      github-cli # Auth and settings
+      slides # Terminal-based Presentations
+      graph-easy # Charts and Graphs
+      wget # AstroLSP dependency
+      unzip # AstroLSP dependency
       presenterm
+      
+      # ---------- Nix Tooling ------------------ #
+      alejandra
+      deadnix
+      nixd
+      
+      # ---------- Miscellaneous ---------------- #
+      quickshell
+      catppuccin-cursors.mochaDark
+      
+      # ---------- Work Utilities --------------- #
+      zint-qt
+      zbar
+      qrrs
+      
+      # ---------- GUI Applications ------------- #
+      inkscape # vector graphics
+      obsidian # note-taking with markdown
+      inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
+      
+      # ---------- Learning --------------------- #
       bootdev-cli
-      #  inputs.hyprpaper.packages.${pkgs.stdenv.hostPlatform.system}.default
     ];
   };
  
@@ -29,30 +75,41 @@
     extraConfig = ''
       ${builtins.readFile ../hypr/hyprland.conf}
     '';
-    # plugins = with inputs.hyprland-plugins.packages.${pkgs.stdenv.hostPlatform.system}; [
-    #   #    hyprwinwrap
-    #   hyprexpo
-    #   hyprbars
-    # ];
   };
- 
-  services.hyprpaper = {
-    enable = true;
-    package = inputs.hyprpaper.packages.${pkgs.stdenv.hostPlatform.system}.default;
-    settings = {
-      ipc = "on";
-      splash = false;
-      # preload = ["/home/travis/dotfiles/hypr/wall.png"];
-      wallpaper = [
-        {
-          monitor = "eDP-1";
-          path = "/home/travis/dotfiles/hypr/wall.png";
-        }
-      ];
+  
+  # --------------------------------#
+  # ---- Service Configuration ---- #
+  # ------------------------------- #  
+  
+  services = {
+    hyprpaper = {
+      enable = true;
+      package = inputs.hyprpaper.packages.${pkgs.stdenv.hostPlatform.system}.default;
+      settings = {
+        ipc = "on";
+        splash = false;
+        wallpaper = [
+          {
+            monitor = "eDP-1";
+            path = "/home/travis/dotfiles/hypr/wall.png";
+          }
+        ];
+      };
     };
+  
+    #dunst = {};
+    udiskie = {
+      enable = true;
+      automount = true;
+      notify = true;
+    };
+    #clipse = {};
   };
- 
-  # Your home-manager configurations go here
+
+  # ------------------------------- #
+  # ---- Program Configuration ---- #
+  # ------------------------------- #
+  
   programs = {
 
     home-manager.enable = true;
@@ -86,7 +143,11 @@
         display-window = " Window";
       };
     };
-  
+    
+    #btop = {};
+    #kitty = {};
+    #lazygit = {};
+    
   };
 
 }
