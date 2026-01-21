@@ -17,10 +17,10 @@
     stateVersion = "25.05";
     packages = with pkgs; [ 
       
-      #------------------- Terminal Environment ----------#
-      kitty # ------------- Terminal Emulator ------------#
-      neovim # ------------ Default Editor ---------------#
-      zellij # ------------ Terminal Multiplexer ---------#
+      #---------------- Terminal Environment -------------#
+      kitty # ---------- Terminal Emulator ---------------#
+      neovim # --------- Default Editor ------------------#
+      zellij # --------- Terminal Multiplexer ------------#
       
       #---------------- Dev Languages --------------------#
       typst #----------- Document Formatting / Gen -------#
@@ -66,11 +66,14 @@
       obsidian #-------- Markdown Notes ------------------#
       zen-browser #----- Web Browser ---------------------#
 
-      # ---------- Learning --------------------- #
-      bootdev-cli
+      #---------------- Learning -------------------------#
+      bootdev-cli #----- boot.dev Answer-checker ---------#
     ];
   };
 
+  #---------------------------------#
+  #----- hyprland Config -----------#
+  #---------------------------------#
   wayland.windowManager.hyprland = {
     enable = true;
     package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
@@ -80,9 +83,9 @@
     '';
   };
   
-  # --------------------------------#
-  # ---- Service Configuration ---- #
-  # ------------------------------- #  
+  #---------------------------------#
+  #----- Service Configuration -----#
+  #---------------------------------#  
   
   services = {
     hyprpaper = {
@@ -99,8 +102,7 @@
         ];
       };
     };
-  
-    #dunst = {};
+    
     udiskie = {
       enable = true;
       automount = true;
