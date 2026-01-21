@@ -64,6 +64,9 @@
           name = "travis-humphreys";
           email = "travis.a.humphreys@gmail.com";
         };
+        init = {
+          defaultBranch = "main";
+        };
       };
     };
     
