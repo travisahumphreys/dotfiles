@@ -5,7 +5,7 @@
       global = {
         # ── Geometry ────────────────────────────────────────
         width = 300;
-        height = "(0, 100)";
+        height = "(0, X)";
         origin = "top-right";
         offset = "10x10";
         corner_radius = 12;

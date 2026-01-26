@@ -10,6 +10,7 @@
   imports = [
     inputs.hyprland.homeManagerModules.default
     ./modules/dunst.nix
+    ./modules/hypridlelock.nix
   ];
   home = {
     username = "travis";

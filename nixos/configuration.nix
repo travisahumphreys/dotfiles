@@ -25,12 +25,12 @@
     };
     bluetooth = {
       enable = true;                                                           
-      powerOnBoot = true; # powers up the default Bluetooth controller on boot 
+      powerOnBoot = true;
     };
   };
  
   networking = {
-    hostName = "thinkpad"; # Define your hostname.
+    hostName = "thinkpad";
     networkmanager.enable = true;
   };
 
@@ -45,6 +45,19 @@
   };
 
   security.rtkit.enable = true;
+  security.pam.services = {
+    sudo.fprintAuth = false;
+    su.fprintAuth = false;
+    polkit-1.fprintAuth = false;
+    # login.fprintAuth = false;      # TTY login
+  };
+# security.polkit.extraConfig = ''
+#   polkit.addRule(function(action, subject) {
+#     if (action.id == "net.reactivated.fprint.device.verify") {
+#       return polkit.Result.YES;
+#     }
+#   });
+# '';
 
   users.users.travis = {
     isNormalUser = true;
@@ -113,14 +126,15 @@
     };
   };
   
-  environment.variables = {
-    EDITOR = "nvim";
-    VISUAL = "nvim";
-  };
-
-  environment.systemPackages = with pkgs; [
+  environment = {  
+    variables = {
+      EDITOR = "nvim";
+      VISUAL = "nvim";
+    };
+    
+    systemPackages = with pkgs; [
       
-    # ---------- System Utilites / Dev Tools ----- #
+    # ---------- System Utilites ----------------- #
     zig # compiler
     glibc
     gcc
@@ -131,13 +145,12 @@
     pavucontrol # Pipwire Volume Control
     brightnessctl 
 
-    
     # ---------- Wayland / hypr Utilites --------- #
     hyprshot
     hyprpolkitagent
     wl-clipboard # clipboard hook
-    
-  ];
+    ];
+  };  
   
   services = {
     displayManager = { 
@@ -149,7 +162,8 @@
       layout = "us";
       variant = "";
     };
-    
+
+    fprintd.enable = true; 
     udisks2.enable = true;
     upower.enable = true;
 
