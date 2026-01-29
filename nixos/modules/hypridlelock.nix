@@ -1,4 +1,8 @@
 {
+  inputs,
+  pkgs,
+  ...
+}:{
 # ── Idle daemon ───────────────────────────────────────────
 services.hypridle = {
   enable = true;
@@ -50,6 +54,7 @@ services.hypridle = {
 # ── Lock screen ───────────────────────────────────────────
 programs.hyprlock = {
   enable = true;
+  package = inputs.hyprlock.packages.${pkgs.stdenv.hostPlatform.system}.default;
   settings = {
     general = {
       hide_cursor = true;
