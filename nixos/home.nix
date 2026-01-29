@@ -77,6 +77,7 @@
   #---------------------------------#
   wayland.windowManager.hyprland = {
     enable = true;
+    systemd.enable = true;
     package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
     portalPackage = null;
     extraConfig = ''
@@ -110,6 +111,16 @@
       notify = true;
     };
     #clipse = {};
+  };
+
+  systemd.user.services.hyprpaper = {
+    Unit = {
+      After = [ "hyprland-session.target" ];
+      PartOf = [ "hyprland-session.target" ];
+    };
+    Install = {
+      WantedBy = [ "hyprland-session.target" ];
+    };
   };
 
   # ------------------------------- #

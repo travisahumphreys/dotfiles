@@ -35,6 +35,17 @@ services.hypridle = {
     ];
   };
 };
+  
+  systemd.user.services.hypridle = {
+    Unit = {
+      After = [ "hyprland-session.target" ];
+      PartOf = [ "hyprland-session.target" ];
+    };
+    Install = {
+      WantedBy = [ "hyprland-session.target" ];
+    };
+  };
+
 
 # ── Lock screen ───────────────────────────────────────────
 programs.hyprlock = {
@@ -44,9 +55,6 @@ programs.hyprlock = {
       hide_cursor = true;
       grace = 5; # seconds before lock actually engages
       disable_loading_bar = false;
-      # enable_fingerprint = true;
-      # fingerprint_ready_message = "Scan fingerprint to unlock";
-      # fingerprint_present_message = "Scanning...";
     };
     auth = {
       fingerprint = {
@@ -97,7 +105,7 @@ programs.hyprlock = {
         text = "$TIME";
         color = "rgb(205, 214, 244)";
         font_size = 72;
-        font_family = "Sans Bold";
+        font_family = "CaskaydiaCove Nerd Font Bold";
         position = "0, 150";
         halign = "center";
         valign = "center";
@@ -108,7 +116,7 @@ programs.hyprlock = {
         text = ''cmd[update:3600000] date +"%A, %B %d"'';
         color = "rgb(186, 194, 222)"; # subtext1
         font_size = 20;
-        font_family = "Sans";
+        font_family = "CaskaydiaCove Nerd Font Italic";
         position = "0, 80";
         halign = "center";
         valign = "center";
@@ -119,10 +127,21 @@ programs.hyprlock = {
         text = "$FPRINTPROMPT";
         color = "rgb(166, 227, 161)";  # green, or whatever you prefer
         font_size = 14;
-        font_family = "Sans";
+        font_family = "CaskaydiaCove Nerd Fon";
         position = "0, -80";  # below the input field
         halign = "center";
         valign = "center";
+      }
+      {
+        monitor = "";
+        # The icon might need a space depending on your preference
+        text = ''cmd[update:1000] echo "<span>$(cat /sys/class/power_supply/BAT0/capacity)% 🔋</span>"'';
+        color = "rgb(205, 214, 244)";
+        font_size = 16;
+        font_family = "CaskaydiaCove Nerd Font";
+        position = "-20, 20";
+        halign = "right";
+        valign = "bottom";
       }
     ];
   };
