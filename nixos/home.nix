@@ -11,6 +11,7 @@
     inputs.hyprland.homeManagerModules.default
     ./modules/dunst.nix
     ./modules/hypridlelock.nix
+    ./modules/hyprland.nix
   ];
   home = {
     username = "travis";
@@ -31,6 +32,7 @@
       nodejs_25 #------- NodeJS --------------------------#
       ripgrep #--------- Regular Expressions -------------#
       fzf #------------- Fuzzy Finder --------------------#
+      sqlite-interactive
       
       #---------------- TUI Utilites ---------------------#
       btop #------------ System Resource Monitor ---------#
@@ -75,15 +77,15 @@
   #---------------------------------#
   #----- hyprland Config -----------#
   #---------------------------------#
-  wayland.windowManager.hyprland = {
-    enable = true;
-    systemd.enable = true;
-    package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
-    portalPackage = null;
-    extraConfig = ''
-      ${builtins.readFile ../hypr/hyprland.conf}
-    '';
-  };
+  # wayland.windowManager.hyprland = {
+  #   enable = true;
+  #   systemd.enable = true;
+  #   package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+  #   portalPackage = null;
+  #   extraConfig = ''
+  #     ${builtins.readFile ../hypr/hyprland.conf}
+  #   '';
+  # };
   
   #---------------------------------#
   #----- Service Configuration -----#
@@ -146,7 +148,55 @@
     
     bottom.enable = true;
 
-    ashell.enable = true;
+    ashell = {
+      enable = true;
+      settings = {
+        appearance = {
+          font_name = "CaskaydiaCove Nerd Font";
+          scale_factor = 0.90;
+          style = "Islands";
+          
+  # base00: "#272e33" # bg0,       palette1 dark
+  # base01: "#2e383c" # bg1,       palette1 dark
+  # base02: "#414b50" # bg3,       palette1 dark
+  # base03: "#859289" # grey1,     palette2 dark
+  # base04: "#9da9a0" # grey2,     palette2 dark
+  # base05: "#d3c6aa" # fg,        palette2 dark
+  # base06: "#edeada" # bg3,       palette1 light
+  # base07: "#fffbef" # bg0,       palette1 light
+  # base08: "#e67e80" # red,       palette2 dark
+  # base09: "#e69875" # orange,    palette2 dark
+  # base0A: "#dbbc7f" # yellow,    palette2 dark
+  # base0B: "#a7c080" # green,     palette2 dark
+  # base0C: "#83c092" # aqua,      palette2 dark
+  # base0D: "#7fbbb3" # blue,      palette2 dark
+  # base0E: "#d699b6" # purple,    palette2 dark
+  # base0F: "#9da9a0" # grey2,     palette2 dark
+
+          primary_color = "#7aa2f7";
+          success_color = "#9ece6a";
+          text_color = "#a9b1d6";
+          workspace_colors = ["#7aa2f7" "#9ece6a"];
+          danger_color = {
+            base = "#f7768e";
+            weak = "#e0af68";
+          };
+          background_color = {
+            base = "#1a1b26";
+            weak = "#24273a";
+            strong = "#414868";
+          };
+          secondary_color = {
+            base = "#0c0d14";
+          };
+        };
+        modules = {
+          left = [ "Workspaces" ];
+          center = [ "WindowTitle" ];
+          right = [ "Clock" [ "SystemInfo" "Settings" ] ];
+        };
+      };
+    };
 
     rofi = {
       enable = true;

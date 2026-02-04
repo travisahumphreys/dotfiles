@@ -145,18 +145,17 @@
         ]) (lib.range 1 10));
 
         modBinds = [
-        "Q, exec, ${terminal},"
+        "Q, exec, ${terminal}"
         "C, killactive,"
         "M, exit,"
-        "E, exec, ${fileManager},"
-        "V, exec, ${clipboard},"
+        "E, exec, ${fileManager}"
+        "V, exec, ${clipboard}"
         "F, togglefloating,"
-        "R, exec, ${menu},"
+        "R, exec, ${menu}"
         "P, pseudo,"
         "J, togglesplit,"
-        "L, exec, ${lock},"
+        "L, exec, ${lock}"
         "S, togglespecialworkspace, magic"
-        "SHIFT, S, movetoworkspace, special:magic"
 
         "left, movefocus, l"
         "right, movefocus, r"
@@ -167,6 +166,7 @@
         "SHIFT, Print, exec, ${snipRegion}"
         ", Print, exec, ${snipScreen}"
 
+        "${mod} SHIFT, S, movetoworkspace, special:magic"
         " , XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
       ]
         ++ map (b: "${mod}, ${b}") modBinds
