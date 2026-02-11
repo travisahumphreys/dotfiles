@@ -133,7 +133,7 @@
         fileManager = "kitty --class yazi -e yazi";
         menu = "rofi -show drun";
         clipboard = "kitty --class clipse -e clipse";
-        snipRegion = "hyprshot -m region --clipboard-only";
+        snipRegion = "hyprshot -m region --clipboard-only --freeze";
         snipScreen = "hyprshot -m output --clipboard-only";
         lock = "loginctl lock-session";
 

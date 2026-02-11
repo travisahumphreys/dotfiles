@@ -49,6 +49,8 @@
       wget #------------ Barebones HTTP ------------------#
       unzip #----------- File Compression ----------------#
       claude-code #----- AI Agent ------------------------#
+      uv
+      pandoc
       
       #---------------- Nix Tooling ----------------------#
       alejandra #------- Nix Formatter -------------------#
@@ -151,49 +153,39 @@
     ashell = {
       enable = true;
       settings = {
+      # CustomModule = [
+      #   {
+      #   name = "Spacer";
+      #   icon = "		";
+      #    command = "";
+      #   # listen_cmd = "";
+      #   }
+      #   ];
         appearance = {
           font_name = "CaskaydiaCove Nerd Font";
           scale_factor = 0.90;
           style = "Islands";
-          
-  # base00: "#272e33" # bg0,       palette1 dark
-  # base01: "#2e383c" # bg1,       palette1 dark
-  # base02: "#414b50" # bg3,       palette1 dark
-  # base03: "#859289" # grey1,     palette2 dark
-  # base04: "#9da9a0" # grey2,     palette2 dark
-  # base05: "#d3c6aa" # fg,        palette2 dark
-  # base06: "#edeada" # bg3,       palette1 light
-  # base07: "#fffbef" # bg0,       palette1 light
-  # base08: "#e67e80" # red,       palette2 dark
-  # base09: "#e69875" # orange,    palette2 dark
-  # base0A: "#dbbc7f" # yellow,    palette2 dark
-  # base0B: "#a7c080" # green,     palette2 dark
-  # base0C: "#83c092" # aqua,      palette2 dark
-  # base0D: "#7fbbb3" # blue,      palette2 dark
-  # base0E: "#d699b6" # purple,    palette2 dark
-  # base0F: "#9da9a0" # grey2,     palette2 dark
-
-          primary_color = "#7aa2f7";
-          success_color = "#9ece6a";
-          text_color = "#a9b1d6";
-          workspace_colors = ["#7aa2f7" "#9ece6a"];
+          primary_color =     "#414b50";
+          text_color =        "#edeada";
+          workspace_colors = ["#2e383c"];
+          success_color =     "#a7c080";
           danger_color = {
-            base = "#f7768e";
-            weak = "#e0af68";
+            base = "#e67e80";
+            weak = "#e69875";
           };
           background_color = {
-            base = "#1a1b26";
-            weak = "#24273a";
+            base = "#272e33";
+            weak = "#2e383c";
             strong = "#414868";
           };
           secondary_color = {
-            base = "#0c0d14";
+            base = "#859289";
           };
         };
         modules = {
-          left = [ "Workspaces" ];
-          center = [ "WindowTitle" ];
-          right = [ "Clock" [ "SystemInfo" "Settings" ] ];
+          left = [ [ "Workspaces" ] [ "WindowTitle" ] ];
+          center = [ "Clock"  ];
+          right = [  "SystemInfo" [ "Settings" ] ];
         };
       };
     };
