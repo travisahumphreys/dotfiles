@@ -51,6 +51,7 @@
       claude-code #----- AI Agent ------------------------#
       uv
       pandoc
+      bc
       
       #---------------- Nix Tooling ----------------------#
       alejandra #------- Nix Formatter -------------------#
@@ -174,9 +175,9 @@
             weak = "#e69875";
           };
           background_color = {
-            base = "#272e33";
+            base = "#414b50";
             weak = "#2e383c";
-            strong = "#414868";
+            strong = "#272e33";
           };
           secondary_color = {
             base = "#859289";

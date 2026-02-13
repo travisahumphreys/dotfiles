@@ -19,6 +19,7 @@
       exec-once = [
         "clipse -listen"
         "systemctl --user start hyprpolkitagent.service"
+        "kitty +kitten panel ~/bar.sh"
       ];
       env = [
       "XCURSOR_SIZE,32"               
