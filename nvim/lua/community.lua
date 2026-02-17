@@ -21,4 +21,5 @@ return {
   { import = "astrocommunity.markdown-and-latex.render-markdown-nvim" },
   { import = "astrocommunity.motion.mini-surround" },
   { import = "astrocommunity.scrolling.mini-animate" },
+  { import = "astrocommunity.colorscheme.everforest" },
 }
