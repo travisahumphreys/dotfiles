@@ -135,10 +135,12 @@
   programs = {
 
     home-manager.enable = true;
+    
     nh = {
       enable = true;
       osFlake = "/home/travis/dotfiles/";
     };
+    
     git = {
       enable = true;
       settings = {
