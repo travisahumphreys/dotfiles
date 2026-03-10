@@ -87,7 +87,6 @@
       libraries = with pkgs; [
         marksman
         icu
-        # Add any missing dynamic libraries for unpackaged programs
       ];
     };
 

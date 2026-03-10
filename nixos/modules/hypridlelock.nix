@@ -50,7 +50,6 @@ services.hypridle = {
     };
   };
 
-
 # ── Lock screen ───────────────────────────────────────────
 programs.hyprlock = {
   enable = true;
@@ -151,9 +150,4 @@ programs.hyprlock = {
     ];
   };
 };
-# ```
-#
-# Then add a keybind in your Hyprland config:
-# ```
-# bind = SUPER, L, exec, loginctl lock-session
 }
