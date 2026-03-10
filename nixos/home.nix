@@ -49,19 +49,19 @@
       wget #------------ Barebones HTTP ------------------#
       unzip #----------- File Compression ----------------#
       claude-code #----- AI Agent ------------------------#
-      uv
-      pandoc
       bc
+      gum
       
       #---------------- Nix Tooling ----------------------#
       alejandra #------- Nix Formatter -------------------#
       deadnix #--------- Nix Linter ----------------------#
       nixd #------------ Nix LSP -------------------------#
-      
+
       #---------------- Miscellaneous --------------------#
       quickshell #------ Widget Maker --------------------#
       activeCursor #---- Mocha Dark Cursor Theme ---------#
-      
+      socat 
+
       #---------------- Work Utilities -------------------#
       zint-qt #--------- Barcode Generator ---------------#
       zbar #------------ Barcode Reader ------------------#
@@ -135,7 +135,10 @@
   programs = {
 
     home-manager.enable = true;
-    
+    nh = {
+      enable = true;
+      osFlake = "/home/travis/dotfiles/";
+    };
     git = {
       enable = true;
       settings = {
