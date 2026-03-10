@@ -19,7 +19,7 @@
       exec-once = [
         "clipse -listen"
         "systemctl --user start hyprpolkitagent.service"
-        "kitty +kitten panel ~/bar.sh"
+        #  "kitty +kitten panel ~/topbar/bar.py"
       ];
       env = [
       "XCURSOR_SIZE,32"               
@@ -154,7 +154,7 @@
         "F, togglefloating,"
         "R, exec, ${menu}"
         "P, pseudo,"
-        "J, togglesplit,"
+        "J, layoutmsg, cyclenext,"
         "L, exec, ${lock}"
         "S, togglespecialworkspace, magic"
 
