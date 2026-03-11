@@ -12,6 +12,8 @@
     ./modules/dunst.nix
     ./modules/hypridlelock.nix
     ./modules/hyprland.nix
+    ./modules/clipse.nix
+    ./modules/hyprpaper.nix
   ];
   home = {
     username = "travis";
@@ -38,7 +40,7 @@
       btop #------------ System Resource Monitor ---------#
       lynx #------------ TUI web browser -----------------#
       fastfetch #------- look, me shiny ------------------#
-      clipse #---------- Clipboard service ---------------#
+      #clipse #---------- Clipboard service ---------------#
       visidata #-------- Spreadsheets and Databases ------#
       lazygit #--------- Git TUI -------------------------#
       pop #------------- TUI email utility ---------------#
@@ -95,38 +97,37 @@
   #---------------------------------#  
   
   services = {
-    hyprpaper = {
-      enable = true;
-      package = inputs.hyprpaper.packages.${pkgs.stdenv.hostPlatform.system}.default;
-      settings = {
-        ipc = "on";
-        splash = false;
-        wallpaper = [
-          {
-            monitor = "eDP-1";
-            path = "/home/travis/dotfiles/hypr/wall.png";
-          }
-        ];
-      };
-    };
+    # hyprpaper = {
+    #   enable = true;
+    #   package = inputs.hyprpaper.packages.${pkgs.stdenv.hostPlatform.system}.default;
+    #   settings = {
+    #     ipc = "on";
+    #     splash = false;
+    #     wallpaper = [
+    #       {
+    #         monitor = "eDP-1";
+    #         path = "/home/travis/dotfiles/hypr/wall.png";
+    #       }
+    #     ];
+    #   };
+    # };
     
     udiskie = {
       enable = true;
       automount = true;
       notify = true;
     };
-    #clipse = {};
   };
 
-  systemd.user.services.hyprpaper = {
-    Unit = {
-      After = [ "hyprland-session.target" ];
-      PartOf = [ "hyprland-session.target" ];
-    };
-    Install = {
-      WantedBy = [ "hyprland-session.target" ];
-    };
-  };
+  # systemd.user.services.hyprpaper = {
+  #   Unit = {
+  #     After = [ "hyprland-session.target" ];
+  #     PartOf = [ "hyprland-session.target" ];
+  #   };
+  #   Install = {
+  #     WantedBy = [ "hyprland-session.target" ];
+  #   };
+  # };
 
   # ------------------------------- #
   # ---- Program Configuration ---- #
@@ -138,7 +139,7 @@
     
     nh = {
       enable = true;
-      osFlake = "/home/travis/dotfiles/";
+      osFlake = "/home/travis/dotfiles";
     };
     
     git = {
