@@ -122,6 +122,7 @@
     variables = {
       EDITOR = "nvim";
       VISUAL = "nvim";
+      NH_OS_FLAKE = "/home/travis/dotfiles/flake.nix";
     };
     
     systemPackages = with pkgs; [
