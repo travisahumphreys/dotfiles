@@ -54,6 +54,7 @@
     self,
     nixpkgs,
     home-manager,
+    sops-nix,
     ...
   } @ inputs: {
     nixosConfigurations."thinkpad" = nixpkgs.lib.nixosSystem {
@@ -62,6 +63,7 @@
       modules = [
         ./nixos/configuration.nix
         home-manager.nixosModules.home-manager # Enable the home-manager module
+        sops-nix.nixosModules.sops
         {
           home-manager.extraSpecialArgs = {inherit inputs;};
           home-manager.useGlobalPkgs = true; # Use the system's package set
