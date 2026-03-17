@@ -19,7 +19,7 @@
       exec-once = [
         "clipse -listen"
         "systemctl --user start hyprpolkitagent.service"
-        #  "kitty +kitten panel ~/topbar/bar.py"
+        "kitten panel ~/topbar/bar.py"
       ];
       env = [
       "XCURSOR_SIZE,32"               
@@ -108,6 +108,8 @@
         follow_mouse = 1;
         sensitivity = 0;
 
+        numlock_by_default = true;
+        
         touchpad = {
           natural_scroll = true;
           disable_while_typing = false;
