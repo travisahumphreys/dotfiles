@@ -48,7 +48,29 @@
       url = "github:youwen5/zen-browser-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    claude-code = {
+      url = "github:sadjow/claude-code-nix";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        #flake-utils.follows = "flake-utils";
+      };
+    };
+
+    claude-desktop = {
+      url = "github:aaddrick/claude-desktop-debian";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        #flake-utils.follows = "flake-utils";
+      };
+    };
+  # in your flake inputs
+  kitty-src = {
+    url = "github:kovidgoyal/kitty";
+    flake = false;
   };
+  };
+
 
   outputs = {
     self,

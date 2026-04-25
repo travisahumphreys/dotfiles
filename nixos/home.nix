@@ -6,6 +6,8 @@
   let
     activeCursor = pkgs.catppuccin-cursors.mochaDark;
     zen-browser = inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default;
+    claude-desktop = inputs.claude-desktop.packages.${pkgs.stdenv.hostPlatform.system}.claude-desktop-fhs;
+    claude-code = inputs.claude-code.packages.${pkgs.stdenv.hostPlatform.system}.claude-code;
   in {
   imports = [
     inputs.hyprland.homeManagerModules.default
@@ -30,17 +32,19 @@
       typst #----------- Document Formatting / Gen -------#
       jq #-------------- JSON Query ----------------------#
       go #-------------- Golang --------------------------#
-      python3 #--------- Python --------------------------#
+      # python3 #--------- Python --------------------------#
       nodejs_25 #------- NodeJS --------------------------#
       ripgrep #--------- Regular Expressions -------------#
       fzf #------------- Fuzzy Finder --------------------#
       sqlite-interactive
+      uv
+      cargo
       
-      #---------------- TUI Utilites ---------------------#
+
+      #---------------- TUI / CLI Utilites ---------------#
       btop #------------ System Resource Monitor ---------#
       lynx #------------ TUI web browser -----------------#
       fastfetch #------- look, me shiny ------------------#
-      #clipse #---------- Clipboard service ---------------#
       visidata #-------- Spreadsheets and Databases ------#
       lazygit #--------- Git TUI -------------------------#
       pop #------------- TUI email utility ---------------#
@@ -51,13 +55,19 @@
       wget #------------ Barebones HTTP ------------------#
       unzip #----------- File Compression ----------------#
       claude-code #----- AI Agent ------------------------#
-      bc
       gum
+      tree-sitter
+      csvkit
+      bc
       
       #---------------- Nix Tooling ----------------------#
       alejandra #------- Nix Formatter -------------------#
       deadnix #--------- Nix Linter ----------------------#
       nixd #------------ Nix LSP -------------------------#
+
+      #---------------- Secrets Management ---------------#
+      sops #------------ Encrypted Secrets ----------------#
+      age #------------- Encryption Tool ------------------#
 
       #---------------- Miscellaneous --------------------#
       quickshell #------ Widget Maker --------------------#
@@ -73,6 +83,7 @@
       inkscape #-------- Vector Graphics -----------------#
       obsidian #-------- Markdown Notes ------------------#
       zen-browser #----- Web Browser ---------------------#
+      claude-desktop qemu virtiofsd bubblewrap 
 
       #---------------- Learning -------------------------#
       bootdev-cli #----- boot.dev Answer-checker ---------#
@@ -80,37 +91,10 @@
   };
 
   #---------------------------------#
-  #----- hyprland Config -----------#
-  #---------------------------------#
-  # wayland.windowManager.hyprland = {
-  #   enable = true;
-  #   systemd.enable = true;
-  #   package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
-  #   portalPackage = null;
-  #   extraConfig = ''
-  #     ${builtins.readFile ../hypr/hyprland.conf}
-  #   '';
-  # };
-  
-  #---------------------------------#
   #----- Service Configuration -----#
   #---------------------------------#  
   
   services = {
-    # hyprpaper = {
-    #   enable = true;
-    #   package = inputs.hyprpaper.packages.${pkgs.stdenv.hostPlatform.system}.default;
-    #   settings = {
-    #     ipc = "on";
-    #     splash = false;
-    #     wallpaper = [
-    #       {
-    #         monitor = "eDP-1";
-    #         path = "/home/travis/dotfiles/hypr/wall.png";
-    #       }
-    #     ];
-    #   };
-    # };
     
     udiskie = {
       enable = true;
@@ -119,15 +103,6 @@
     };
   };
 
-  # systemd.user.services.hyprpaper = {
-  #   Unit = {
-  #     After = [ "hyprland-session.target" ];
-  #     PartOf = [ "hyprland-session.target" ];
-  #   };
-  #   Install = {
-  #     WantedBy = [ "hyprland-session.target" ];
-  #   };
-  # };
 
   # ------------------------------- #
   # ---- Program Configuration ---- #
@@ -156,46 +131,6 @@
     };
     
     bottom.enable = true;
-
-    ashell = {
-      enable = true;
-      settings = {
-      # CustomModule = [
-      #   {
-      #   name = "Spacer";
-      #   icon = "		";
-      #    command = "";
-      #   # listen_cmd = "";
-      #   }
-      #   ];
-        appearance = {
-          font_name = "CaskaydiaCove Nerd Font";
-          scale_factor = 0.90;
-          style = "Islands";
-          primary_color =     "#414b50";
-          text_color =        "#edeada";
-          workspace_colors = ["#2e383c"];
-          success_color =     "#a7c080";
-          danger_color = {
-            base = "#e67e80";
-            weak = "#e69875";
-          };
-          background_color = {
-            base = "#414b50";
-            weak = "#2e383c";
-            strong = "#272e33";
-          };
-          secondary_color = {
-            base = "#859289";
-          };
-        };
-        modules = {
-          left = [ [ "Workspaces" ] [ "WindowTitle" ] ];
-          center = [ "Clock"  ];
-          right = [  "SystemInfo" [ "Settings" ] ];
-        };
-      };
-    };
 
     rofi = {
       enable = true;

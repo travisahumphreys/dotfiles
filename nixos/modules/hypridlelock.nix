@@ -139,7 +139,7 @@ programs.hyprlock = {
       {
         monitor = "";
         # The icon might need a space depending on your preference
-        text = ''cmd[update:1000] echo "<span>$(cat /sys/class/power_supply/BAT0/capacity)% 🔋</span>"'';
+        text = ''cmd[update:1000] echo "<span>$(cat /sys/class/power_supply/BAT0/capacity)% 󰂎 </span>"'';
         color = "rgb(205, 214, 244)";
         font_size = 16;
         font_family = "CaskaydiaCove Nerd Font";

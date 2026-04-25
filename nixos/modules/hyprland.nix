@@ -19,7 +19,8 @@
       exec-once = [
         "clipse -listen"
         "systemctl --user start hyprpolkitagent.service"
-        "kitten panel ~/topbar/bar.py"
+        "kitten panel ~/sill/bar.py"
+        "kitty --override background_opacity=0.6 btop"
       ];
       env = [
       "XCURSOR_SIZE,32"               
